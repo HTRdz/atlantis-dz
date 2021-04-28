@@ -1,0 +1,57 @@
+{% extends 'atlhotel_en/home.html' %}
+{% load static %}
+{% block main %}
+{% include 'atlhotel_en/header_standard.html' %}
+<section class="row breadcrumb-area darken" style="background-image: url({{banner.pic.url}});">
+        <div class="container">
+            <div class="breadcrumb-text">
+            </div>
+        </div>
+    </section>
+<nav class="bg-white" aria-label="breadcrumb">
+                              <ol class="breadcrumb" class="bg-white" style="background-color: white;">
+                                <li class="breadcrumb-item"><a href="{% url 'home' h.name %}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Discover {{h.region}}</li>
+                              </ol>
+                            </nav>   
+<div class="row pt-60  justify-content-center">
+<div class="post-box with-video">
+    <h1 class="text-center mb-4">Welcome to {{h.region|capfirst}}</h1>
+                            <div class="post-media">
+                                <img src="{{video.pic.url}}" alt="Image">
+                                <a href="#" class="play-icon"><i class="fas fa-play"></i></a>
+                            </div>
+                
+                        </div>
+
+                        
+    <div class="container">
+        
+        <div class="mb-70"><p>{{textVideo.texte|capfirst|linebreaks}}</p></div>
+   <div class="d-lg-flex justify-content-center flex-wrap mb-70">
+
+                        {% for pic,text in zipped %}
+                        <div class="  post-box mb-40 col-lg-6">
+
+                            <div class="post-media">
+                                <img src="{{pic.pic.url}}" alt="Image">
+                            </div>
+                            <div class="post-desc ">
+                                
+                                <h2>
+                                    {{text.title|capfirst}}
+                                </h2>
+                                
+                                <p>{{text.texte|capfirst}}</p>
+
+                                
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+</div>
+
+    <!--====== BLOG SECTION END ======-->
+{% endblock %}

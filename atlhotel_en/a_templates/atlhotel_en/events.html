@@ -1,0 +1,60 @@
+{% extends 'atlhotel_en/home.html' %}
+{% load static %}
+{% block main %}
+{% include 'atlhotel_en/header_standard.html' %}
+<div class="row">
+<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" >
+  <div class="carousel-inner">
+    {% for pic in pics %}
+    {% if pic.position == 1 %}
+    <div class="carousel-item active" data-interval="1000">
+      <img src="{{pic.pic.url}}" class="d-block w-100">
+    </div>
+    {% else %}
+     <div class="carousel-item" data-interval="3000">
+      <img src="{{pic.pic.url}}" class="d-block w-100">
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+<nav class="bg-white" aria-label="breadcrumb">
+                              <ol class="breadcrumb" class="bg-white" style="background-color: white;">
+                                <li class="breadcrumb-item"><a href="{% url 'home' h.name %}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Events</li>
+                              </ol>
+                            </nav>
+
+<section class="blog-section pt-60 pb-60">
+        <div class="container">
+          <h1 class="text-center my-4">Events</h1>
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-11">
+                    {% for text in texts %}
+                    <div class="blog-loop">
+                        <div class="post-box mb-40">
+                            <div class="post-desc">
+                                <h2>
+                                   {{text.title|capfirst}}
+                                </h2>
+                               <p>{{text.texte|safe|escape}}</p> 
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

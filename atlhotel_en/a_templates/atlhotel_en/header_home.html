@@ -1,0 +1,133 @@
+{% load static %}
+<header>
+
+   <nav class="navbar navbar-expand-none navbar-dark bg-transparent" >
+  <a class="navbar-brand" href="{% url 'home' h.name %}"><img class="d-md-block d-none" src="{{h.logo.url}}" alt="Logo" width="160px" >
+    <img class="d-md-none" src="{%  static 'img/Logo-en-or.png' %}" alt="Logo" width="120px" ></a>
+      <a class="btn btn-outline-light d-none d-md-block ml-auto mx-2 reservez left" href="#reservez">Book now</a>
+      <a class="btn btn-outline-light d-md-none col-4 reservez mobile" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Book now
+  </a>
+  <div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <div class="container">
+      <div class="booking-form-inner col-lg-9 mx-auto bg-transparent">
+        <form method="POST" class="col-lg-11 mx-auto"> {% csrf_token %}
+          <div class="row align-items-end justify-content-center">
+            <div class=" col-md-6 ">
+              <label for="arrival-date">Arrival Date</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"> 
+                  <span class="input-group-text" id="basic-addon1"><i class="fal fa-calendar-alt"></i></span>
+                </div>
+                <input type="text" class="form-control p-1" placeholder="Select a date" aria-label="Sélectionnez une date" aria-describedby="basic-addon1" id="arrival-date">
+              </div>
+            </div>
+            <div class=" col-md-6">
+              <div class="inputs-filed mt-30">
+                <label for="departure-date">Departure Date</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fal fa-calendar-alt"></i></span>
+                  </div>
+                  <input type="text" class="form-control p-1" placeholder="Select a date" aria-label="Sélectionnez une date" aria-describedby="basic-addon1" name="departure-date" id="departure-date" >
+                </div>
+              </div>
+             </div>
+            <div class="form-group mx-1">
+              <label for="adultes">Adults</label>
+              <select class="form-control" id="adults">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="form-group mx-1">
+              <label for="enfants">Kids</label>
+              <select class="form-control" id="kids">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="text-center">
+              <div class="inputs-filed mt-30" >
+                <button class="btn btn-outline-dark" type="submit">Book now</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+     </div>                          
+  </div>
+</div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color: white;">
+    <i class="fal fa-bars" style="color:#fff; font-size:28px;"></i>
+  </button>
+  
+
+  <div class="collapse navbar-collapse mr-auto"  id="navbarSupportedContent">
+    <ul class="navbar-nav mr-2 mr-auto justify-content-end col-lg-2 col-md-4" style="position: absolute; right: 0.7%;"> <!-- col-sm-9 col-9 -->
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'home' h.name %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'rooms' h.name %}">Rooms</a>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'gallery' h.name %}">Gallery</a>
+      </li>
+
+      <li class="nav-item dropdown active m-3">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Restaurants
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {% for resto in restos %}
+          <a class="dropdown-item" href="{% url 'food' h.name resto.name_spage %}"> {{resto.name_spage|capfirst}}</a>
+          
+          {% endfor %}
+        </div>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'events' h.name %}">Events</a>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'area' h.name h.region %}">Discover {{h.region}}</a>
+      </li>
+         <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'covid' h.name %}">Sanitary measure</a>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'contact' h.name %}">Contact</a>
+      </li>
+
+
+    <li class="nav-item dropdown active m-3">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <img src="{% static 'img/united-kingdom.png' %}" width=23px></a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {% if not sousPage == None %}
+           <a class="dropdown-item" href="{% url ar  h.name sousPage.name_spage_en %}">
+          {% else %}
+          <a class="dropdown-item" href="{% url ar  h.name  %}">
+          {% endif %}<img src="{% static 'img/algeria.png' %}" width=23px></a>
+          {% if not sousPage == None %}
+           <a class="dropdown-item" href="{% url page.page_name_fr h.name sousPage.name_spage %}">
+          {% else %}
+          <a class="dropdown-item" href="{% url page.page_name_fr h.name  %}">
+          {% endif %}<img src="{% static 'img/france.png' %}" width=23px>
+        </a>
+      </div>
+    </li>
+
+  
+  </ul>
+
+</nav>
+
+</header>
+

@@ -1,0 +1,33 @@
+{% extends 'atlhotel_en/home.html' %}
+{% load static %}
+{% block main %}
+{% include 'atlhotel_en/header_standard.html' %}
+<section class="row breadcrumb-area darken" style="background-image: url({{picCover.pic.url}});">
+        <div class="container">
+            <div class="breadcrumb-text">
+                <br>
+            </div>
+        </div>
+</section>
+<nav class="bg-white" aria-label="breadcrumb">
+    <ol class="breadcrumb" class="bg-white" style="background-color: white;">
+        <li class="breadcrumb-item"><a href="{% url 'home' h.name %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+    </ol>
+</nav>
+<section class="gallery-wrappper pb-120">
+        <div class="container">
+            <h1 class="text-center mt-5 mb-80">Gallery</h1>
+            <div class="gallery-loop">
+                {% for pic in pics %}
+                <div class="single-gallery-image wow fadeInUp" data-wow-delay=".3s">
+                    <a href="{{pic.pic.url}}" class="popup-image">
+                        <img src="{{pic.pic.url}}" alt="Images">
+                    </a>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </section>
+{% endblock %}

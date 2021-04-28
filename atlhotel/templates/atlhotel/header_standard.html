@@ -1,0 +1,125 @@
+{% load static %}
+<header>
+  <nav class="navbar navbar-expand-none navbar-dark bg-transparent flex-wrap" >
+    <a class="navbar-brand" href="{% url 'hotel' h.name %}"><img class="d-md-block d-none image_nav" src="{{h.logo.url}}" alt="Logo" width="160px" >
+    <!-- reservation success message -->
+    {% if messages %} 
+    {% for message in messages %}
+     <span class="alert alert-light ml-auto border-0 msg_temp" style="background-color: rgba(180, 214, 193,0.8);"> {{message}}</span>
+     {% endfor %}
+    {% endif %}
+    <!-- end of reservation success message -->
+
+    <!-- reservation collapse -->
+    <a class="btn btn-outline-light d-block ml-auto reservez left mx-2 px-1" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="position: relative; right: 0;" id="toggler">Réservez maintenant</a>
+    <div class="collapse mx-lg-2" id="collapseExample">
+      <div class="card card-body">   
+        <div class="container">
+          <div class="booking-form-inner mx-auto bg-transparent">
+            <!-- reservation form -->
+            <form method="POST" class=" mx-auto"> {% csrf_token %}
+              <div class="row align-items-center justify-content-center">
+                <div class="col-md-3 ">
+                  <input type="text" class="form-control p-1 my-3 " placeholder="Nom et prénom" id="name_r" name="name_r" required>
+                </div>
+                <div class="col-md-3 ">
+                  <input type="email" class="form-control p-1 my-3" placeholder="Adresse électronique" id="mail_r" name="mail_r" required>
+                </div>
+                <div class="col-md-3 ">
+                  <input type="number" class="form-control p-1 my-3" placeholder="Numéro de téléphone" id="phone_r" name="phone_r" min="0" required>
+                </div>
+                <div class="form-group col-md-3 mt-3">
+                  <select class="form-control" id="room_type" name="room_type" required>
+                    <option value="" selected>Type de chambre</option>
+                    {% for chambre in chambres %}
+                      <option value="{{chambre.name_spage}}"> {{chambre.name_spage}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control p-1 my-3 mt-md-5" placeholder="Nombre de personnes" id="np" name="np" min="0" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="date_a" class="mt-3 mt-md-0">Date d'arrivée:</label> 
+                  <input type="date" class="form-control p-1 " placeholder="Date d'arrivée" id="date_a" name="date_a" min = '{{year}}-{{month}}-{{day}}' required>
+                </div>
+                <div class="col-md-3">
+                  <label for="date_d" class="mt-3 mt-md-0">Date du départ: </label> 
+                  <input type="date" class="form-control p-1" placeholder="Date du départ" id="date_d" name="date_d" min = '{{year}}-{{month}}-{{day}}' required>
+                </div>
+                <div class="text-center col-md-3 w-100 mt-3 mt-md-4 pt-md-2">
+                  <div class="inputs-filed" >
+                    <button class="btn btn-outline-dark rounded-0 w-100" style="border-color: #bead8e; background-color: #bead8e; color:white;max-width: 100%; " onMouseOver="this.style.background='white';this.style.color='black';"  onMouseOut="this.style.background='#bead8e';this.style.color='white';" type="submit">Réservez maintenant</button>
+                  </div>
+                </div> 
+              </div>
+            </form>
+            <!-- end of reservation form -->
+          </div>
+        </div>                   
+      </div>
+    </div>
+    <!-- end of reservation collapse -->
+
+    <!-- nav links -->
+    <div class="d-flex align-items-center " style="position: relative; right: 0;">
+      <button class="navbar-toggler ml-auto mx-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color: white;">
+        <i class="fal fa-bars" style="color:#fff; font-size:28px;" ></i>
+      </button>
+      <ul class="p-0">
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle mx-2 p-0"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="{% static 'img/france.png' %}" width=23px>
+          </a>
+          <div class="dropdown-menu bg-transparent border-0" aria-labelledby="navbarDropdown">
+            {% if not sousPage == None %}
+            <a class="dropdown-item" href="{% url ar  h.name sousPage.name_spage_en %}">
+            {% else %}
+            <a class="dropdown-item" href="{% url ar  h.name  %}">
+            {% endif %}<img src="{% static 'img/algeria.png' %}" width=23px></a>   
+            
+            {% if not sousPage == None %}
+            <a class="dropdown-item" href="{% url page.page_name_en h.name sousPage.name_spage_en %}">
+            {% else %}
+            <a class="dropdown-item" href="{% url page.page_name_en h.name  %}">
+            {% endif %}<img src="{% static 'img/united-kingdom.png' %}" width=23px></a>
+          </div>
+        </li>
+      </ul>
+      <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+        <ul class="navbar-nav mr-2 mr-auto justify-content-end " style="position: fixed; right: 3%;top:100px;">
+          <li class="nav-item active m-3">
+            <a class="nav-link" href="{% url 'hotel' h.name %}">Accueil <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active m-3">
+            <a class="nav-link" href="{% url 'chambre' h.name %}">Chambres</a>
+          </li>
+          <li class="nav-item active m-3">
+            <a class="nav-link" href="{% url 'galerie' h.name %}">Galerie</a>
+          </li>
+          <li class="nav-item dropdown active m-3">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restaurants</a>
+            <div class="dropdown-menu bg-transparent bg-transparent border-0" aria-labelledby="navbarDropdown">
+            {% for resto in restos %}
+              <a class="dropdown-item " style="color:white;" href="{% url 'restaurants' h.name resto.name_spage %}"> {{resto.name_spage|capfirst}}</a>  
+            {% endfor %}
+            </div>
+          </li>
+          <li class="nav-item active m-3">
+            <a class="nav-link" href="{% url 'evenements' h.name %}">Evenements</a>
+          </li>
+          <li class="nav-item active m-3">
+            <a class="nav-link" href="{% url 'region' h.name h.region %}">Découvrez {{h.region}}</a>
+          </li>
+          <li class="nav-item active m-3">
+            <a class="nav-link" href="{% url 'covid_fr' h.name %}">Mesure sanitaire</a>
+          </li>
+          <li class="nav-item active m-3">
+            <a class="nav-link" href="{% url 'contacte' h.name %}">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- end of nav links -->
+  </nav>
+</header>

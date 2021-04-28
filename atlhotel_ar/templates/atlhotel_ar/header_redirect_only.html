@@ -1,0 +1,84 @@
+{% load static %}
+<header>
+
+  <nav class="navbar navbar-expand-none navbar-dark bg-transparent flex-row-reverse" >
+  <a class="navbar-brand" href="{% url 'home_ar' h.name %}"><img class="d-md-block d-none" src="{{h.logo.url}}" alt="Logo" width="160px" >
+    <!-- <img class="d-md-none" src="{%  static 'img/Logo-en-or.png' %}" alt="Logo" width="115px" ></a> -->
+  {% if messages %} 
+    {% for message in messages %}
+    <span class="alert alert-light msg_temp mr-auto text-right border-0" style="background-color: rgba(180, 214, 193,0.8);"> {{message}}</span>
+    {% endfor %}
+  {% endif %}
+      <a class="btn btn-outline-light d-block d-lg-none mr-auto mr-1 reservez left mx-2" href="#reservez" role="button" aria-expanded="false" style="position: relative; right: 0;">احجز الان </a>
+
+<div class="d-flex align-items-center justify-content-end mr-lg-auto" style="position: relative; left: 0;">
+
+  <ul class="p-0">
+  <li class="nav-item dropdown active mx-md-2">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="{% static 'img/algeria.png' %}" width=23px> 
+        </a>
+          <div class="dropdown-menu  bg-transparent border-0 text-left mt-3 col-lg-1 p-0" aria-labelledby="navbarDropdown">
+          {% if not sousPage == None %}
+           <a class="dropdown-item " href="{% url page.page_name_fr h.name sousPage.name_spage %}">
+          {% else %}
+          <a class="dropdown-item" href="{% url page.page_name_fr h.name  %}">
+          {% endif %}<img src="{% static 'img/france.png' %}" width=23px></a>
+         
+          {% if not sousPage == None %}
+           <a class="dropdown-item " href="{% url page.page_name_en h.name sousPage.name_spage_en %}">
+          {% else %}
+          <a class="dropdown-item" href="{% url page.page_name_en h.name  %}">
+          {% endif %}<img src="{% static 'img/united-kingdom.png' %}" width=23px></a>
+        </div>
+      </li>
+  </ul>
+ <button class="navbar-toggler mx-md-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color: white;">
+    <i class="fal fa-bars" style="color:#fff; font-size:28px;"></i>
+  </button>
+  <div class="collapse navbar-collapse mr-auto"  id="navbarSupportedContent">
+    <ul class="navbar-nav mr-2 mr-auto justify-content-end text-right" style="position: absolute; left: 4%; top:100px;"> <!-- col-sm-9 col-9 -->
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'home_ar' h.name %}">الرئيسية <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'rooms_ar' h.name %}">الغرف</a>      
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'gallery_ar' h.name %}">صفحة المعرض</a>
+      </li>
+
+      <li class="nav-item dropdown active m-3">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    المطاعم      
+      </a>
+        <div class="dropdown-menu bg-transparent border-0" aria-labelledby="navbarDropdown">
+          {% for resto in restos %}
+          <a class="dropdown-item text-right" style="color:white;" href="{% url 'food_ar' h.name resto.name_spage %}"> {{resto.name_spage_ar|capfirst}}</a>
+          
+          {% endfor %}
+        </div>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'events_ar' h.name %}">الأحداث</a>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'area_ar' h.name h.region %}"> اكتشف {{h.region_ar}}</a>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'covid_ar' h.name %}">التدابير الصحية</a>
+      </li>
+      <li class="nav-item active m-3">
+        <a class="nav-link" href="{% url 'contact_ar' h.name %}">اتصل بنا</a>
+      </li>
+       </ul>
+    </div>
+ </div>
+
+</nav>
+{% if messages %} 
+{% for message in messages %}
+<span class="alert alert-light col-12 msg_temp text-right"> {{message}}</span>
+{% endfor %}
+{% endif %}
+</header>

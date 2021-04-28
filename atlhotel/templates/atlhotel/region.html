@@ -1,0 +1,62 @@
+{% extends 'atlhotel/main.html' %}
+{% load static %}
+{% block main %}
+
+<!-- header -->
+{% include 'atlhotel/header_standard.html' %}
+<!-- end header -->
+
+<!--====== image on top of the page ======-->
+<section class="row breadcrumb-area darken" style="background-image: url({{banner.pic.url}});">
+    <div class="container">
+        <div class="breadcrumb-text"></div>
+    </div>
+</section>
+<!--====== end of image on top of the page ======-->
+
+<!--====== BREADCRUMB PART START ======-->
+<nav class="bg-white" aria-label="breadcrumb">
+    <ol class="breadcrumb" class="bg-white" style="background-color: transparent;">
+        <li class="breadcrumb-item"><a href="{% url 'hotel' h.name %}">Accueil</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Découverez {{h.region}}</li>
+    </ol>
+</nav> 
+<!--====== BREADCRUMB PART END ======-->
+
+
+<div class="row pt-60  justify-content-center">
+    <div class="post-box with-video">
+        <h1 class="text-center mb-4">Bienvenue à {{h.region|capfirst}}</h1>
+        <!-- image for the cover of the video -->
+            <div class="post-media">
+                <img src="{{video.pic.url}}" alt="Image">
+                <a href="#" class="play-icon"><i class="fas fa-play"></i></a>
+            </div>
+        <!-- end of image for the cover of the video -->       
+    </div>                 
+    <div class="container">
+        <!-- description text under the video -->    
+        <div class="mb-70">
+            <p>{{textVideo.texte|capfirst|linebreaks}}</p>
+        </div>
+        <!--end of description text under the video -->
+
+        <!-- pictures and text of region -->
+        <div class="d-lg-flex justify-content-center flex-wrap mb-70">
+        {% for pic,text in zipped %}
+            <div class="  post-box mb-40 col-lg-6">
+                <div class="post-media">
+                    <img src="{{pic.pic.url}}" alt="Image">
+                </div>
+                <div class="post-desc ">
+                    <h2>{{text.Titre|capfirst}}</h2>
+                    <p>{{text.texte|capfirst}}</p>    
+                 </div>
+            </div>
+        {% endfor %}
+        </div>
+        <!-- end of pictures and text of region -->
+    </div>
+</div>
+
+{% endblock %}

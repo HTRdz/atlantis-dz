@@ -1,0 +1,230 @@
+{% extends 'atlhotel/main.html' %}
+{% load static %}
+{% block main %}
+<!-- header -->
+{% include 'atlhotel/header_redirect_only.html' %} 
+<!-- end of header -->
+
+<!-- Image en tête de page -->
+{% for pic in picsCarousel %}
+{% if pic.position == '1' %}
+<section class="row breadcrumb-area darken" style="background-image: url({{pic.pic.url}});">
+        <div class="container">
+            <div class="breadcrumb-text">
+               
+            </div>
+        </div>
+    </section>
+{% endif %}
+{% endfor %}
+<!--====== BREADCRUMB ======-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="background-color: transparent;">
+    <li class="breadcrumb-item"><a href="{% url 'hotel' h.name %}">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'chambre' h.name %}">Chambres</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{text.Titre}}</li>
+  </ol>
+</nav>
+<!--====== BREADCRUMB PART END ======-->
+
+    <!--====== ROOM-DETAILS START ======-->
+    <section class="room-details pt-40 pb-90">
+        <div class="container">
+            <div class="row">
+                <!-- details -->
+                <div class="col-lg-8">
+                    <div class="deatils-box">
+                        <div class="title-wrap">
+                            <div class="title">
+                            <!-- title and price of the room -->
+                            <div class="room-cat">Chambre</div>
+                                <h2>{{text.Titre}}</h2>
+                            </div>
+                            <div class="price" id="price_suite">
+                               {{price.room_price}}<span>DA/Nuit</span>
+                            </div>
+                        </div>
+                        <!-- Room slider -->
+                        <div class="thumb mt-3">
+                          <div class="room-details-slider">
+                            {% for pic in picsCarousel %}
+                            <img src="{{pic.pic.url}}" alt="images">
+                            {% endfor %}
+                           
+                          </div>
+                          <div class="room-details-slider-nav">
+                            {% for pic in picsCarousel %}
+                            <img src="{{pic.pic.url}}" alt="images">
+                            {% endfor %}
+                           
+                          </div>
+                        </div>
+                        <!-- en of room slider -->
+                        <!-- description of the room -->
+                        <p>
+                            
+                            {{text.texte|linebreaks}}
+                            
+                        </p>
+                        <!-- end of description of the room -->
+                        <!-- amenties -->
+                        <div class="room-fearures clearfix col-12" >
+                            <!-- index of icons -->
+                            <a href="{% url 'icons' h.name %}" target="_blank"><p><ul class="room-fearures-list d-flex flex-wrap justify-content-center" >
+                                
+                                <li><i class="fal fa-wind" style="color:black;"></i></li>
+                                <li><i class="fal fa-wifi" style="color:black;"></i></li>
+                                <li><i class="fal fa-coffee" style="color:black;"></i></li>
+                                <li><i class="fal fa-lock" style="color:black;"></i></li>
+                                <li><i class="fal fa-broom" style="color:black;"></i></li>
+                                <li><i class="fal fa-shower" style="color:black;"></i></li>
+                                <li><i class="fal fa-bed" style="color:black;"></i></li>
+                                <li><i class="fal fa-concierge-bell" style="color:black;"></i></li>
+                                <li><i class="fal fa-tv" style="color:black;"></i></li>
+                                <li><i class="fal fa-swimmer" style="color:black;"></i></li>
+                                <li><i class="fal fa-hotel" style="color:black;"></i></li>
+                                <li><i class="fal fa-car" style="color:black;"></i></li>
+                                <li><img src="{% static 'img/hair-dryer.png' %}" width="32px"></li>
+                                <li><img src="{% static 'img/iron-board.png' %}"></li>
+                                <!-- <li> <img src="{% static 'img/air-conditioner.png' %}"> </li> -->
+                                <!-- <li><i class="fal fa-phone"></i></li> -->
+                               
+
+                            </ul></p></a>
+                        </div>
+                    <!-- end of amenties -->
+                    <!-- House rules  --> 
+                        <div class="room-rules clearfix mb-30">
+                            <h3 class="subtitle">Règles de la maison</h3>
+                            <ul class="room-rules-list">
+                                {% for r in hr %}
+                                <li>{{r.texte|capfirst}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    <!--end of House rules  --> 
+                    <!-- Cancellation -->
+                        <div class="cancellation-box clearfix mb-30">
+                            <h3 class="subtitle">{{annul.Titre|capfirst}}</h3>
+                            <p>
+                               {{annul.texte|capfirst}}
+                            </p>
+                        </div>
+                     <!-- end of Cancellation --> 
+                     <!-- Rooms boxes -->   
+                        <div class="related-room">
+                            <h3 class="subtitle">Nos chambres</h3>
+                            <div class="row room-gird-loop">
+                                <div class="col-lg-12">
+                                    <!-- rooms slider -->
+                                    <section class="room-slider bg-white">
+
+                                        <div class="row rooms-slider-two justify-content-center">
+                                          <!-- images and texts loop -->
+                                          {% for caroussel,t in zipped %}
+                                            <div class="col-md-12">
+                                                <div class="single-rooms-box">
+                                                    <!-- images of rooms -->
+                                                    <div class="room-img w-100">
+                                                        <div class="img w-100" style="background-image: url({{caroussel.pic.url}});">
+                                                        </div>
+                                                    </div>
+                                                    <!-- index of icons -->
+                                                    <a href="{% url 'icons' h.name %}" target="_blank">
+                                                    <ul class="icons col-12 text-center">
+                                                        <li class="mx-3"><i class="fal fa-bed"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-wifi"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-car"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-coffee"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-concierge-bell"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-swimmer"></i></li>
+                                                        <!-- <li class="mx-3"><i class="fal fa-compress-arrows-alt"></i></li> -->
+                                                    </ul></a>
+                                                    <!-- description of rooms -->
+                                                    <div class="room-desc col-12" style="position: absolute; left: 0;">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-12">
+                                                              
+                                                                <h4><a href="{% url 'chambre' h.name t.description %}">Réservez nos {{t.Titre|capfirst}}s</a></h4>
+                                                                <p>
+                                                                    {{t.texte|capfirst|truncatechars:40}}
+                                                                    
+                                                                </p>
+                                                             
+                                                            </div>
+                                                        <!-- prices of rooms -->
+                                                            <div class="col">
+                                                                {% for p in prices %}
+                                                                <div class="price">
+                                                                    {% if p.room_type_fr == t.description %}
+                                                                    {{p.room_price}}<span>DA/Nuit</span>
+                                                                    {% endif %}
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                </section>
+                            <!--end of rooms slider -->
+
+
+                                </div>
+                                
+                                
+                                
+                            </div>
+                        </div>
+                        <!--end of Rooms boxes -->
+                    </div>
+                </div>
+                <!-- form for the reservation-->
+                <div class="col-lg-4 ">
+
+                    <div class="room-booking-form position-stick sticky-top" id="reservez">
+                        <h5 class="title">Réservation</h5>
+                        <form action="#" method="POST"> {% csrf_token %}
+                            
+                            <div class="input-group input-group-two mb-20">
+                                <input type="text" placeholder="Nom et prénom" id="name_r" name="name_r" required>
+                            </div>
+                              <div class="input-group input-group-two mb-20">
+                                <input type="email" placeholder="Adresse électronique" name="mail_r" id="mail_r" required>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <input type="number" min='0' placeholder="numéro de téléphone" name="phone_r" id="phone_r" required>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <select id="room_type" name="room_type" required>
+                                <option value="" selected>Type de chambre</option>
+                                {% for chambre in chambres %}
+                                <option value="{{chambre.name_spage}}"> {{chambre.name_spage}}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <input type="number" min='0' placeholder="Nombre de personnes" id="np" name="np" required>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <label for="date_a">Date d'arrivée:</label> 
+                                <input type="date" id="date_a" name="date_a"  min = '{{year}}-{{month}}-{{day}}'  required>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <label for="date_d">Date du départ: </label> 
+                                <input type="date" placeholder="Date du départ" id="date_d" name="date_d" min = '{{year}}-{{month}}-{{day}}' required>
+                            </div>
+                            <div class="input-group">
+                                <button class="main-btn btn-filled">Réservez</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- end of the form for the reservation-->
+            </div>
+        </div>
+    </section>
+    
+    
+{% endblock %}

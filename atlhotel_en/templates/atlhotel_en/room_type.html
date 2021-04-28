@@ -1,0 +1,205 @@
+{% extends 'atlhotel_en/home.html' %}
+{% load static %}
+{% block main %}
+{% include 'atlhotel_en/redirection_only_header.html' %}
+{% for pic in picsCarousel %}
+{% if pic.position == '1' %}
+<section class="row breadcrumb-area darken" style="background-image: url({{pic.pic.url}});">
+        <div class="container">
+            <div class="breadcrumb-text">
+               
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    {% endfor %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="background-color: white;">
+    <li class="breadcrumb-item"><a href="{% url 'home' h.name %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'rooms' h.name %}">Rooms</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{text.title}}</li>
+  </ol>
+</nav>
+    <!--====== BREADCRUMB PART END ======-->
+    <!--====== ROOM-DETAILS START ======-->
+    <section class="room-details pt-40 pb-90">
+        <div class="container">
+            <div class="row">
+                <!-- details -->
+                <div class="col-lg-8">
+                    <div class="deatils-box">
+                        <div class="title-wrap">
+                            <div class="title">
+                                <div class="room-cat">Room</div>
+                                <h2>{{text.title}}</h2>
+                            </div>
+                            <div class="price" id="price_suite">
+                                {{price.room_price}}<span>DA/Night</span>
+                            </div>
+                        </div>
+                        <div class="thumb mt-3">
+                          <div class="room-details-slider">
+                            {% for pic in picsCarousel %}
+                            <img src="{{pic.pic.url}}" alt="images">
+                            {% endfor %}    
+                          </div>
+                          <div class="room-details-slider-nav">
+                            {% for pic in picsCarousel %}
+                            <img src="{{pic.pic.url}}" alt="images">
+                            {% endfor %}
+                           
+                          </div>
+                        </div>
+                        <p>
+                            
+                            {{text.texte|linebreaks}}
+                            
+                        </p>
+                        <div class="room-fearures clearfix mt-60 mb-60">
+                            <a href="{% url 'icons_en' %} " target="_blank">
+                           <p><ul class="room-fearures-list d-flex flex-wrap justify-content-center" >
+                                <li><i class="fal fa-wind" style="color:black;"></i></li>
+                                <li><i class="fal fa-wifi" style="color:black;"></i></li>
+                                <!-- <li><i class="fal fa-key"></i></li> -->
+                                <li><i class="fal fa-coffee" style="color:black;"></i></li>
+                                <li><i class="fal fa-lock" style="color:black;"></i></li>
+                                <li><i class="fal fa-broom" style="color:black;"></i></li>
+                                <li><i class="fal fa-shower" style="color:black;"></i></li>
+                                <li><i class="fal fa-bed" style="color:black;"></i></li>
+                                <li><i class="fal fa-concierge-bell" style="color:black;"></i></li>
+                                <!-- <li><i class="fal fa-shopping-cart" style="color:black;"></i></li> -->
+                                <li><i class="fal fa-tv" style="color:black;"></i></li>
+                                <!-- <li><i class="fal fa-phone"></i></li> -->
+                                <li><i class="fal fa-swimmer" style="color:black;"></i></li>
+                                <li><i class="fal fa-hotel" style="color:black;"></i></li>
+                                <li><i class="fal fa-car" style="color:black;"></i></li>
+                                <li><img src="{% static 'img/hair-dryer.png' %}" width="32px"></li>
+                                <li><img src="{% static 'img/iron-board.png' %}"></li>
+                                <!-- <li> <img src="{% static 'img/air-conditioner.png' %}"> </li> -->
+                            </ul></p></a>
+                        </div>
+                     
+                        
+                        <div class="room-rules clearfix mb-30">
+                            <h3 class="subtitle">House rules</h3>
+                            <ul class="room-rules-list">
+                                {% for r in hr %}
+                                <li>{{r.title|capfirst}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="cancellation-box clearfix mb-30">
+                            <h3 class="subtitle">{{annul.title|capfirst}}</h3>
+                            <p>
+                               {{annul.texte|capfirst}}
+                            </p>
+                        </div>
+                        
+                        <div class="related-room">
+                            <h3 class="subtitle">Our rooms</h3>
+                            <div class="row room-gird-loop">
+
+                                
+                                <div class="col-12">
+
+
+                                    <section class="room-slider bg-white">
+
+                                        <div class="row rooms-slider-two justify-content-center">
+                                          
+                                          {% for caroussel,t in zipped %}
+                                            <div class="col-md-12">
+                                                <div class="single-rooms-box">
+                                                    <div class="room-img w-100">
+                                                        <div class="img w-100" style="background-image: url({{caroussel.pic.url}});">
+                                                        </div>
+                                                    </div>
+                                                    <a href="{% url 'icons_en' %} " target="_blank">
+                                                    <ul class="icons col-12 text-center">
+                                                        <li class="mx-3"><i class="fal fa-bed"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-wifi"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-car"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-coffee"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-concierge-bell"></i></li>
+                                                        <li class="mx-3"><i class="fal fa-swimmer"></i></li>
+                                                        <!-- <li class="mx-3"><i class="fal fa-compress-arrows-alt"></i></li> -->
+                                                    </ul></a>
+                                                    <div class="room-desc col-12" style="position: absolute; left: 0;">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-12">
+                                                              
+                                                                <h4><a href="{% url 'rooms' h.name t.description %}">Book our {{t.title|capfirst}}s</a></h4>
+                                                                <p>
+                                                                    {{t.texte|capfirst|truncatechars:40}}
+                                                                    
+                                                                </p>
+                                                             
+                                                            </div>
+                                                            <div class="col">
+                                                                {% for p in prices %}
+                                                                <div class="price">
+                                                                    {% if p.room_type == t.description %}
+                                                                    {{p.room_price}}<span>DA/Nuit</span>
+                                                                    {% endif %}
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                </section>
+
+                                
+                              </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- form -->
+                <div class="col-lg-4 ">
+
+                    <div class="room-booking-form position-stick sticky-top" id="reservez">
+                        <h5 class="title">Reservation</h5>
+                        <form action="#" method="POST"> {% csrf_token %}
+                            <div class="input-group input-group-two mb-20">
+                                <input type="text" placeholder="Your full name" id="name_r" name="name_r" required>
+                            </div>
+                              <div class="input-group input-group-two mb-20">
+                                <input type="email" placeholder="E-mail address" name="mail_r" id="mail_r" required>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <input type="number" min='0' placeholder="Phone number" name="phone_r" id="phone_r" required>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <select id="room_type" name="room_type" required>
+                                <option value="" selected>Room type</option>
+                                {% for chambre in chambres %}
+                                <option value="{{chambre.name_spage}}"> {{chambre.name_spage_en}}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <input type="number" min='0' placeholder="Number of persons" id="np" name="np" required>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <label for="date_a">Arrival date:</label> 
+                                <input type="date" id="date_a" min = '{{year}}-{{month}}-{{day}}' name="date_a" required>
+                            </div>
+                            <div class="input-group input-group-two mb-20">
+                                <label for="date_d">Arrival date: </label> 
+                                <input type="date" placeholder="Date du départ" id="date_d" name="date_d"  required>
+                            </div>
+                            <div class="input-group">
+                                <button class="main-btn btn-filled">Book now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== ROOM-DETAILS END ======-->
+    
+{% endblock %}

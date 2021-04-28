@@ -1,0 +1,509 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{% static 'img/logo-noir.png' %}" type="img/png" />
+    <!--====== Animate Css ======-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> -->
+  
+<!--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKnB_ZwtBND5JfRU4WMcIx2NDoWyTHxs8&callback=initMap&libraries=&v=weekly" defer></script> -->
+  <link rel="stylesheet" href="{% static 'css/animate.min.css' %}" />
+  <!--====== Flaticon css ======-->
+  <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" />
+  <!--====== Fontawesome css ======-->
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+  <!--====== Magnific Popup css ======-->
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" />
+  <!--====== Owl Carousel css ======-->
+  <link rel="stylesheet" href="{% static 'css/slick.css' %}" />
+  <!--====== Nice Select ======-->
+  <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" />
+  <!--  <link rel="stylesheet" href="{% static 'css/style-nice-select.css' %}" /> -->
+  <!--====== Bootstrap Datepicker ======-->
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}" />
+  <!--====== Default css ======-->
+  <link rel="stylesheet" href="{% static 'css/default.css' %}" />
+  <!--====== Style css ======-->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <!--====== Bootstrap css ======-->
+  <!-- <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" /> -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> 
+
+ 
+  <title>Atlantis Hotel</title>
+  <style type="text/css">
+    header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    z-index: 2000;
+    -webkit-animation: sticky 1.2s;
+    animation: sticky 1.2s;
+    font-family: "Roboto", sans-serif;
+    }
+  .btn:focus,.btn:active {
+     outline: none !important;
+     box-shadow: none;
+    }
+    
+   @media all and (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu{ display: none; }
+    .navbar .nav-item:hover .nav-link{ color: #fff;  }
+    .navbar .nav-item:hover .dropdown-menu{ display: block; }
+    .navbar .nav-item .dropdown-menu{ margin-top:0; }
+
+}
+ @media only screen and (min-width: 600px){
+  .bord{
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+  }
+}
+   i{
+    font-size:32px;
+    max-width: 32px;
+    max-height: 32px;
+  }
+.carousel-item:after {
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      background:rgba(0,0,0,0.3);
+    }
+  .darken:after {
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      background:rgba(0,0,0,0.4);
+    }
+    a:hover {
+      color: #bead8e;
+    }
+    .navbar-nav {
+    background-color: rgba(0,0,0,0.5) !important;
+    color:white !important;
+}
+  .dropdown-item:hover{
+    background-color: rgba(0,0,0,0.3) !important;
+  }
+  .navbar.collapsing,
+  .navbar.show {
+    background: #fff !important;
+  }
+
+  </style>
+
+</head>
+<body>
+   <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="cssload-container">
+            <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
+        </div>
+    </div>
+<div class="container-fluid">
+
+{% block main %}
+{% include 'atlhotel/header_standard.html' %}
+
+<section class="row banner-area banner-style-two" id="bannerSlider" style="overflow: hidden;">
+ {% for banner in banners %}         
+        <div class="single-banner d-flex align-items-center justify-content-center">
+            <div class="container-fluid">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            
+                            <h1 class="title" data-animation="fadeInLeft" data-delay=".9s">Hôtel {{h.group|capfirst}}</h1> 
+                              <span class="promo-tag mt-3" data-animation="fadeInDown" data-delay=".6s" style="font-size: 1.2em;">
+                              {% for i in n %}
+                              <i class="fas fa-star"></i>
+                              {% endfor %}
+                             </span><br>
+                             <h1 class="title" data-animation="fadeInLeft" data-delay=".9s">{{h.name|capfirst}}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- banner bg -->
+            <div class="banner-bg" style="background-image: url({{banner.pic.url}});"></div>
+            <div class="banner-overly"></div>
+        </div>
+{% endfor %}       
+    </section>
+    <!--====== BANNER PART ENDS ======-->
+    <!--====== TEXT BLOCK START ======-->
+    <section class="text-block pt-60">
+        <div class="container">
+            <div class="row align-items-center justify-content-center wow fadeInLeft" data-wow-delay=".3s">
+                <div class="col-lg-7">
+                    <div class="text-img text-center text-lg-left mb-small">
+                        <div class="row">
+                            <div class="embed-responsive  embed-responsive-16by9" style="width :100%;">
+                             <iframe class="embed-responsive-item mx-auto"  src="{{videoDesc.texte}}" allowfullscreen></iframe>
+                            </div>  
+                          </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-8 col-sm-10 wow fadeInRight" data-wow-delay=".5s">
+                    <div class="block-text">
+                        <div class="section-title mb-10">
+                            <span class="title-tag">Hotel</span>
+                            <h2 style="font-size: 2.7em;">{{h.group|capfirst}}  {{h.name|capfirst}}</h2>
+                        
+                        <p>
+                            {{textDesc.texte|capfirst|linebreaks}}<br>
+
+                            <ul class="icons d-flex col-12 text-center" >
+                            <a href="{% url 'icons' h.name %} " style="color: black;"><li><i class="fal fa-coffee mx-md-3 mx-2"></i></li></a>
+                            <a href="{% url 'icons' h.name %}" style="color: black;"><li><i class="fal fa-plane mx-md-3 mx-2" ></i></li></a>
+                            <a href="{% url 'icons' h.name %}" style="
+                             color: black;"><li><i class="fal fa-map-marker-alt mx-md-3 mx-2" ></i></li></a>
+                            <a href="{% url 'icons' h.name %}" style="
+                             color: black;"><li><i class="fal fa-spa mx-md-3 mx-2" ></i></li></a>
+                            <a href="{% url 'icons' h.name %}" style="color: black;"><li><i class="fal fa-hotel mx-md-3 mx-2"></i></li></a>
+                        </ul>
+                        </p></div>
+                       <!--  <a href="#" class="main-btn btn-filled mt-40">Learn More</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== TEXT BLOCK END ======-->
+
+    <!--====== FEATURE ROOM START ======-->
+    <div class="container p-0">
+    <section class="room-slider bg-white pb-40 pt-70">
+        
+            <div class="section-title mb-20 text-center">
+                <span class="title-tag">Atlantis</span>
+                <h2>Chambres</h2>
+            </div>
+
+            <div class="row rooms-slider-two justify-content-center">
+              
+              {% for caroussel,t in zipped %}
+
+                <div class="col-lg-6">
+                    <div class="single-rooms-box">
+                        <div class="room-img">
+                            <div class="img" style="background-image: url({{caroussel.pic.url}});">
+                            </div>
+                        </div>
+                        <a href="{% url 'icons' h.name %} ">
+                        <ul class="icons col-12 text-center">
+                            <li class="mx-3"><i class="fal fa-bed"></i></li>
+                            <li class="mx-3"><i class="fal fa-wifi"></i></li>
+                            <li class="mx-3"><i class="fal fa-car"></i></li>
+                            <li class="mx-3"><i class="fal fa-coffee"></i></li>
+                            <li class="mx-3"><i class="fal fa-concierge-bell"></i></li>
+                            <li class="mx-3"><i class="fal fa-swimmer"></i></li>
+                            <!-- <li class="mx-3"><i class="fal fa-compress-arrows-alt"></i></li> -->
+                        </ul></a>
+                        <div class="room-desc">
+                            <div class="row align-items-center">
+                                <div class="col-sm-8">
+                                  
+                                    <h3><a href="{% url 'chambre' h.name t.description %}">Découvrez nos {{t.Titre|capfirst}}s</a></h3>
+                                    <p>
+                                        {{t.texte|capfirst|truncatechars:65}}
+                                    </p>
+                                 
+                                </div>
+                                <div class="col-sm-4">
+                                  {% for p in price %}
+                                    <div class="price">
+                                      {% if p.room_type_fr == t.description %}
+                                        {{p.room_price}}<span>DA/Nuit</span>
+                                      {% endif %}
+                                    </div>
+                                  {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+      <section class="row room-gallery-cta mt-40" style="background-image: url( {{ scroll.pic.url }});">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="cta-text text-center">
+                        <span>{{textScroll.Titre}}</span>
+                        <h2>
+                            {{textScroll.texte|capfirst}}
+                        </h2>
+                          
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </section>
+    <!--====== VIDEO WRAP END ======-->
+
+    <!--====== LATEST NEWS START ======-->
+    <section class="row latest-news pt-60 pb-115">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-8 col-sm-7">
+                    <div class="section-title">
+                        <!-- <span class="title-tag">Covid</span> -->
+                        <h3>Mesures sanitaires: <br> <a href="{% url 'covid_fr' h.name %}">{{textCovid.Titre|capfirst}}</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-5 d-none d-sm-block">
+                    <div class="latest-post-arrow arrow-style text-right">
+
+                    </div>
+                </div>
+            </div>
+            <!-- Latest post loop -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="latest-post-box d-lg-flex mt-4">
+                        <div class="post-img col-lg-4" style="background-image: url( {{covid.pic.url}} );"></div>
+                        <div class="post-desc col-lg-8">
+                            
+                           
+                            <p>
+                                {{textCovid.texte|truncatechars:300|capfirst}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+    </div> 
+    </section>
+    <!--====== LATEST NEWS END ======-->
+    <!--====== INSTAGRAM FEED PART START ======-->
+    <section class=" row instagram-feed-section">
+        <div class="container-fluid p-0">
+            <div class="instagram-slider">
+              {% for pic in pics %}
+                <div class="image">
+                    <a href="{{pic.pic.url}}" class="insta-popup">
+                        <img src="{{pic.pic.url}}" alt="instagram-feed">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+    <!--====== Back to Top ======-->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fal fa-angle-double-up" style="font-size: 24px;"></i>
+    </a>
+
+ <!--====== FOOTER START ======-->
+    <footer class="footer-two"> 
+        <div class="row footer-widget-area pt-20 pb-2" style="background-color: #333333;border-top: solid 5px #262626;">
+            <div class="container-fluid" >
+                <div class="row col-12 mx-auto">
+                    
+                    <div class="d-flex flex-column col-lg-3 col-md-4 ml-lg-2 mb-3 mb-md-0 justify-content-md-center">
+                        <!-- Nav Widget -->
+                        <div class="widget nav-widget mx-md-auto" >
+                        <div class="mx-auto text-center" id="map">
+                        <iframe width="100%" height="100%" frameborder="0" allowfullscreen src="//umap.openstreetmap.fr/fr/map/atlantis-bejaia_540678?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=undefined&captionBar=false"></iframe>
+                       </div>
+                            <!-- <div>
+                                <h4 class="widget-title text-left mb-3" style="padding-left:15px;">Nos hotels</h4>
+                                <ul class="d-flex flex-wrap justify-content-center mb-0">
+                                  {% for hotel in hotels %}
+                                    <li class="col-md-6 col-3 col-lg-3"><a href="{% url 'hotel' hotel.name %}">{{hotel.name|capfirst}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div> -->
+                            <h4 class="widget-title text-left mb-3" style="padding-left:15px;">Suivez-nous sur</h4>
+                             <div class="widget site-info-widget">
+                            
+                            <div class="social-links d-flex justify-content-lg-start justify-content-center">
+                                <a href="{{h.facebook_url}}" class="mx-2 mb-lg-3"><i class="fab fa-facebook-f" style="font-size: 1.3em;"></i></a>
+                                <a href="{{h.instagram_url}}" class="mx-2 mb-lg-3"><i class="fab fa-instagram" style="font-size: 1.3em;"></i></a>
+                                <a href="{{h.tripadvisor_url}}" class="mx-2 mb-lg-3"><i class="fab fa-tripadvisor" style="font-size: 1.3em;"></i></a>
+                                <a href="{{h.youtube_url}}" class="mx-2 mb-lg-3"><i class="fab fa-youtube" style="font-size: 1.3em;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+
+                    <div class="col-lg-8 col-md-8 col-sm-6 d-md-flex ml-lg-5 ">
+                        <!-- Contact Widget -->
+                        <div class="widget contact-widget justify-content-center col-md-7 col-lg-7 bord pl-lg-5 pl-md-2" style="/*border-color: #bead8e !important;*/ ">
+                            <h4 class="widget-title col-12 mb-3 pl-0 pl-md-1">Contactez-nous</h4>
+                            <div class="contact-lists">
+                                <div class="contact-box my-0 py-0">
+                                    <div class="icon">
+                                        <i class="flaticon-call" style="font-size: 0.8em;"></i>
+                                    </div>
+                                    <div class="desc">
+                                        <h6 class="title mt-3">{{h.tel}}</h6>
+                                        
+                                    </div>
+                                </div>
+                                <div class="contact-box my-0 py-0">
+                                    <div class="icon">
+                                        <i class="fal fa-envelope" style="font-size: 0.8em;"></i>
+                                    </div>
+                                    <div class="desc">
+                                        <h6 class="title mt-3"><a href="mailto:{{h.mail}}">{{h.mail}}</a> </h6>
+                                        
+                                    </div>
+                                </div>
+                                <div class="contact-box my-0 py-0">
+                                    <div class="icon">
+                                        <i class="flaticon-location-pin" style="font-size: 0.8em;"></i>
+                                    </div>
+                                    <div class="desc">
+                                        <h6 class="title mt-3">{{h.adress|capfirst}}</h6>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget nav-widget pl-lg-5 col-md-6 d-md-block d-none">
+                                <h4 class="widget-title text-left mb-3 " style="padding-left:20px;">Nos hôtels</h4>
+                                <ul class="d-flex flex-column justify-content-center mx-auto col-12 mb-0">
+                                  {% for hotel in hotels %}
+                                    <li class="col-12 mx-auto mx-md-0 h5"><a href="{% url 'hotel' hotel.name %}">{{hotel.name|capfirst}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                          <div class="widget nav-widget pl-lg-5 col-md-6 d-md-none d-block">
+                          <p>
+                            <a class="btn" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample" style="font-size: 1.4em; text-decoration: none;">
+                             Nos hôtels  + 
+                            </a>
+                            <div class="collapse" id="collapseExample1">
+                               <ul class="d-flex flex-column justify-content-center mx-auto col-12 mb-0">
+                                  {% for hotel in hotels %}
+                                    <li class="col-12 mx-auto mx-md-0 h5"><a href="{% url 'hotel' hotel.name %}">{{hotel.name|capfirst}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                          </p>
+                          </div>
+                      <!-- <div class="mx-auto text-center col-lg-6 col-md-5 mb-0 pb-0" id="map">
+                        <iframe width="100%" height="100%" frameborder="0" allowfullscreen src="//umap.openstreetmap.fr/fr/map/atlantis-bejaia_540678?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=undefined&captionBar=false"></iframe>
+                      </div> -->
+                    </div>
+                    <div class=" col-12 d-md-none d-none mx-auto">
+                        <!-- Site Info Widget -->
+
+                        <!-- <div class="widget site-info-widget ">
+                            <h4 class="widget-title text-left mb-3 d-md-none d-block" style="padding-left:15px;">Suivez-nous sur</h4>
+                            <div class="social-links d-flex justify-content-lg-start justify justify-content-center mt-lg-5">
+                                <a href="{{h.facebook_url}}" class="mx-2 mb-lg-3"><i class="fab fa-facebook-f" style="font-size: 1.3em;"></i></a>
+                                <a href="{{h.instagram_url}}" class="mx-2 mb-lg-3"><i class="fab fa-instagram" style="font-size: 1.3em;"></i></a>
+                                <a href="{{h.tripadvisor_url}}" class="mx-2 mb-lg-3"><i class="fab fa-tripadvisor" style="font-size: 1.3em;"></i></a>
+                                <a href="{{h.youtube_url}}" class="mx-2 mb-lg-3"><i class="fab fa-youtube" style="font-size: 1.3em;"></i></a>
+                            </div>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="row copyright-area" style="background-color: #262626;">
+            <div class="container-fluid">
+                <div class="row align-items-center col-12">
+                    <div class="col-lg-6 col-md-5 order-2 order-md-1 d-md-block d-none">
+                        <p class="copyright-text copyright-two mt-3 "><a href="https://htr-services-dz.com/" style="color: white; ">© HTR Services Dz</a> </p>
+                    </div>
+                    <div class="col-lg-6 col-md-7 order-1 order-md-2 d-md-block d-none">
+                        <div class="footer-menu text-center text-md-right">
+                            <ul>
+                                <li><a class="mt-3" href="{% url 'sitemap' %}" style="color: white; ">Plan du site</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 d-md-none d-block">
+                      <div class="d-flex flex-wrap" style="" >
+                        <a class="col  px-0 py-2 text-left" style="font-size: 1em;color:white !important;" href="https://htr-services-dz.com/">©HTR Services Dz </a>
+                        <a class="col-5  px-0 py-2 text-right" style="font-size: 1em;color:white !important;position: absolute;right: 0;" href="{% url 'sitemap' %}">Plan du site</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+</div></div>
+ 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 180){
+      $('.navbar-brand').addClass("d-none");
+      $('.reservez').removeClass("btn-outline-light").css({"background-color":"rgba(190, 173, 142,0.9)","color":"white"});
+      $('.navbar-toggler').css({"background-color":"rgba(190, 173, 142,0.9)","color":"white", "border-color":"rgb(190, 173, 142)"})
+      $('.left').removeClass("ml-auto")
+      $('.mobile').removeClass("col-4")
+      $('.mono').removeClass("col-lg-2").removeClass("col-4")
+    }
+    else{
+       $('.navbar-brand').removeClass("d-none");
+        $('.reservez').addClass("btn-outline-light").css("background-color","transparent")
+        $('.navbar-toggler').css({"background-color":"transparent","color":"white", "border-color":"white"})
+        $('.left').addClass("ml-auto")
+        $('.mobile').addClass("col-4")
+        $('.mono').addClass("col-lg-2")
+    }
+    })
+    
+    
+  /*$(window).scroll(function(){
+     $('nav').toggleClass('scrolled', $(this).scrollTop() > 180);
+     });
+  */
+</script>
+<!--====== jquery js ======-->
+    <script src= "{% static 'JS/modernizr-3.6.0.min.js' %}"></script>
+    <script src= "{% static 'JS/jquery-1.12.4.min.js' %}"></script>         
+    <script src= "{% static 'JS/popper.min.js' %}"></script>
+    <!--====== Slick js ======-->
+    <script src=" {% static 'JS/slick.min.js' %}"></script>
+    <!--====== Isotope js ======-->
+    <script src=" {% static 'JS/isotope.pkgd.min.js' %}"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="{% static 'JS/jquery.magnific-popup.min.js' %}"></script>
+    <!--====== Nice Select ======-->
+    <script src="{% static 'JS/jquery.nice-select.min.js' %}"></script>
+    <!--====== Bootstrap datepicker ======-->
+    <script src="{% static 'JS/bootstrap-datepicker.js' %}"></script>
+    <!--====== Wow JS ======-->
+    <script src="{% static 'JS/wow.min.js' %}"></script>
+    <!--====== Main js ======-->
+    <script src="{% static 'JS/main.js' %}"></script>
+
+</body>
+</html> 
