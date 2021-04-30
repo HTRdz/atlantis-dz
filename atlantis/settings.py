@@ -25,7 +25,7 @@ SECRET_KEY = 'z001x0(#@h%2vzx%ukqtki@)($2cr6metbae0&0iwk=m!ay9ot'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['178.33.13.224']
+ALLOWED_HOSTS = ['178.33.13.224','127.0.0.1']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'atlhotel_en',
     'atlhotel_ar',
     'administrateur',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -107,7 +108,12 @@ DATABASES = {
     }
 }
 
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME':  str(BASE_DIR / 'db.sqlite3'),
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

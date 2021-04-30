@@ -2,12 +2,16 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from .models import Hotel, Contact, Page, PicturePage, TextPage, Group, SousPage, PictureSousPage,TextSousPage, Reservation, RoomsPrice
 from django.utils.translation import gettext_lazy as _
+from import_export.admin import ImportExportActionModelAdmin
+from import_export.admin import ImportExportModelAdmin
+
+
 # Register your models here.
 
 admin.site.site_header = 'Platform d\'administration Atlantis'
 
 
-class GroupAtlantis(admin.ModelAdmin):
+class GroupAtlantis(ImportExportActionModelAdmin):
 	group_readonly_fields =('name','name_ar',)
 
 	fieldsets = (
@@ -24,7 +28,7 @@ class GroupAtlantis(admin.ModelAdmin):
 			return super(GroupAtlantis, self).get_readonly_fields(request, obj=obj)
 
 	
-class HotelAtlantis(admin.ModelAdmin):
+class HotelAtlantis(ImportExportActionModelAdmin):
 	list_filter = ('name',)
 	fieldsets = (
         ('Information Hotel', {
@@ -75,7 +79,7 @@ class HotelAtlantis(admin.ModelAdmin):
 	 		return super(HotelAtlantis, self).get_fieldsets(request, obj=obj)
 
 
-class RoomsPriceAtlantis(admin.ModelAdmin):
+class RoomsPriceAtlantis(ImportExportActionModelAdmin):
 	list_filter = ('hotel', 'room_type_fr',)
 	price_readonly_fields = ('hotel','room_type_fr',)
 
@@ -106,7 +110,7 @@ class RoomsPriceAtlantis(admin.ModelAdmin):
 	 		return super(RoomsPriceAtlantis, self).get_fieldsets(request, obj=obj)
 
 
-class PicturePageAtlantis(admin.ModelAdmin):
+class PicturePageAtlantis(ImportExportActionModelAdmin):
 	list_filter = ('page',)
 	pic_readonly_fields = ('page',)
 
@@ -148,7 +152,7 @@ class PicturePageAtlantis(admin.ModelAdmin):
 
 
 
-class PictureSousPageAtlantis(admin.ModelAdmin):
+class PictureSousPageAtlantis(ImportExportActionModelAdmin):
 
 	list_filter = ('SousPage',)
 
@@ -190,7 +194,7 @@ class PictureSousPageAtlantis(admin.ModelAdmin):
 	 		return super(PictureSousPageAtlantis, self).get_fieldsets(request, obj=obj)
 
 
-class TextPageAtlantis(admin.ModelAdmin):
+class TextPageAtlantis(ImportExportActionModelAdmin):
 	title = _('Texte de la page en français')
 	parameter_name = 'page'
 	list_filter = ('page',)
@@ -236,7 +240,7 @@ class TextPageAtlantis(admin.ModelAdmin):
 			return queryset.filter(page="Contact Bejaia")
 
 
-class TextSousPageAtlantis(admin.ModelAdmin):
+class TextSousPageAtlantis(ImportExportActionModelAdmin):
 	list_filter = ('sous_page',)
 
 	text_readonly_fields = ('sous_page',)
@@ -274,17 +278,19 @@ class TextSousPageAtlantis(admin.ModelAdmin):
 	 	else:
 	 		return super(TextSousPageAtlantis, self).get_fieldsets(request, obj=obj)
 
-
+class atlantisadmin(ImportExportActionModelAdmin):
+    from_encoding = 'utf-8'
+    pass
 admin.site.register(Group, GroupAtlantis)
 admin.site.register(Hotel,HotelAtlantis)
-admin.site.register(Page)
-admin.site.register(SousPage)
+admin.site.register(Page, atlantisadmin)
+admin.site.register(SousPage, atlantisadmin)
 admin.site.register(PicturePage, PicturePageAtlantis)
 admin.site.register(TextPage,TextPageAtlantis)
-admin.site.register(Contact)
+admin.site.register(Contact, atlantisadmin)
 admin.site.register(PictureSousPage, PictureSousPageAtlantis)
 admin.site.register(TextSousPage, TextSousPageAtlantis)
-admin.site.register(Reservation)
+admin.site.register(Reservation, atlantisadmin)
 admin.site.register(RoomsPrice, RoomsPriceAtlantis)
 
 
