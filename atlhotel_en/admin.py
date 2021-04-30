@@ -1,10 +1,12 @@
 from django.contrib import admin
 from .models import  TextPageEn, TextSousPageEn
+from import_export.admin import ImportExportActionModelAdmin
+
 # Register your models here.
 admin.site.site_header = 'Platform d\'administration Atlantis'
 
 
-class TextPageEnAtlantis(admin.ModelAdmin):
+class TextPageEnAtlantis(ImportExportActionModelAdmin):
 	list_filter = ('page',)
 	
 	text_readonly_fields = ('page',)
@@ -45,7 +47,7 @@ class TextPageEnAtlantis(admin.ModelAdmin):
 	 		return super(TextPageEnAtlantis, self).get_fieldsets(request, obj=obj)
 
 
-class TextSousPageEnAtlantis(admin.ModelAdmin):
+class TextSousPageEnAtlantis(ImportExportActionModelAdmin):
 	list_filter = ('sous_page',)
 
 	text_readonly_fields = ('sous_page',)
