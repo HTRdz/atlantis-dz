@@ -25,7 +25,7 @@ SECRET_KEY = 'z001x0(#@h%2vzx%ukqtki@)($2cr6metbae0&0iwk=m!ay9ot'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['178.33.13.224','127.0.0.1']
+ALLOWED_HOSTS = ['178.33.13.224','127.0.0.1', 'atlantishotels-dz.com']
 
 
 # Application definition
