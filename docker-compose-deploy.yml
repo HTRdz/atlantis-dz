@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+
+
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=atlantis
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=Atlantis@Server@2021
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    
+
+
+  app:
+    build:
+      context: ./app
+    volumes:
+      - static_data:/vol/web
+    environment:
+      - SECRET_KEY=samplesecret123
+      - ALLOWED_HOSTS=127.0.0.1,localhost, 49.12.11.39
+
+  proxy:
+    build:
+      context: ./proxy
+    volumes:
+      - static_data:/vol/static
+    ports:
+      - "8080:8080"
+    depends_on:
+      - app
+      - db
+
+
+
+
+  
+
+
+
+volumes:
+  static_data:
+  pgdata:

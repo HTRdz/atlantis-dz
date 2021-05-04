@@ -81,6 +81,18 @@ WSGI_APPLICATION = 'atlantis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'atlantis',
+        'USER': 'root',
+        'PASSWORD': 'Atlantis@Server@2021',
+        'HOST': 'db',
+        'PORT': '5432',
+    }
+}
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -91,22 +103,22 @@ WSGI_APPLICATION = 'atlantis.wsgi.application'
 #         'HOST' : '127.0.0.1',
 #     }
 # }
-DATABASES = {
-    'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        #'ENGINE': 'django.db.backends.mysql',
-        'ENGINE': 'mysql.connector.django',
-        'NAME':'atlantis',
-        'USER': 'root',
-        'PASSWORD' : 'Atlantis@Server@2021',
-        'PORT' : 3306,
-        'HOST' : 'localhost',
-        # 'OPTIONS': {
-        #     'sql_mode': 'STRICT_ALL_TABLES',
-        # },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         # 'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+#         #'ENGINE': 'django.db.backends.mysql',
+#         'ENGINE': 'mysql.connector.django',
+#         'NAME':'atlantis',
+#         'USER': 'root',
+#         'PASSWORD' : 'Atlantis@Server@2021',
+#         'PORT' : 3306,
+#         'HOST' : 'localhost',
+#         # 'OPTIONS': {
+#         #     'sql_mode': 'STRICT_ALL_TABLES',
+#         # },
+#     }
+# }
 
 # DATABASES = {
 #     'default': {

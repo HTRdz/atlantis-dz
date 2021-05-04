@@ -20,3 +20,5 @@ sqlparse==0.4.1
 whichcraft==0.6.1
 zope.event==4.5.0
 zope.interface==5.2.0
+-e git+https://github.com/django-import-export/django-import-export.git@9706ed1dac903fc50e823a50b80dd4d92bce9916#egg=django_import_export
+gunicorn==19.9.0
